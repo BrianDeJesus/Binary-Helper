@@ -6,7 +6,7 @@ class Results extends React.Component {
     render() {
         if ((this.props.decResult || (this.props.decResult===0 && this.props.exp.length >0)) && !this.props.isInvalidInput) {
           return (
-            <div className="Exp">
+            <div className="Results">
              <h2> Result </h2>
             <table className="Table">
             <tbody>
@@ -19,7 +19,7 @@ class Results extends React.Component {
           );
         }  else if(this.props.isInvalidInput){
               return (
-                <div> ??? Invalid Input </div>
+                <div className="invalid"> ??? Invalid Input </div>
               );
             }
         return null;

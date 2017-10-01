@@ -41,7 +41,7 @@ class App extends Component {
       try{
       var inputLetters = e.target.value.toString();
       var ast = parse(inputLetters);
-      var re = /([A-Za-z_2-9])+/;  //Regular expression of what not accepted
+      var re = /[^01\+\- ]/;
       console.log(re.test(inputLetters));
       var notAllowed = re.test(inputLetters);
       if(inputLetters.length === 0){
@@ -62,7 +62,10 @@ class App extends Component {
           isInvalidInput: false
         });
       }
-    }catch(e){ //do nothing
+    }catch(e){ 
+      this.setState({
+        isInvalidInput: true
+      });
       }
 
     try{

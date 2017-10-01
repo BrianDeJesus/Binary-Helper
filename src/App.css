@@ -1,11 +1,12 @@
 .App {
   text-align: center;
+  height: 100%;
 }
 
 .App-header {
   background-color: #222;
-  height: 100px;
-  padding: 20px;
+  height: 5%;
+  padding: 1px;
   color: white;
 }
 
@@ -14,16 +15,25 @@
   text-decoration: none;
 }
 
+.title {
+  font-size: 2em;
+}
+
+.invalid {
+  padding: 10px;
+}
+
 .author {
   margin-left: 80%;
 }
 
 .Results {
-  font-size: 3em;
+  padding-top: 2px;
+  font-size: 1em;
 }
 
 .Exp {
-  padding-top: 50px;
+  padding-top: 20px;
 }
 
 .Table {
