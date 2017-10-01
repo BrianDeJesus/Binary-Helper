@@ -1,0 +1,127 @@
+import React, { Component } from 'react';
+import './App.css';
+import InputForm from './components/inputs';
+import Header from './components/header';
+import Expression from './components/expression';
+import Results from './components/results';
+
+var parse = require('expression-parser/parse');
+
+class App extends Component {
+
+  state = {
+    exp: '',
+    decResult: 0,
+    binResult: '',
+    hexResult: '',
+    isInvalidInput: false,
+  }
+
+  getBinaryToDecimal = (num) => {
+    return Number.parseInt(num, 2); //binary string to decimal integer
+  }
+
+  getDecimalToBinary = (num) => {
+    return num.toString(2);    //integer num to binary string
+  }
+
+  getDecimalToHex = (num) => {
+    return num.toString(16);  //decimal to hex
+  }
+
+  addOrSubTwoNumbers = (num1, num2, op) => { //recieves two binary strings Adds or subtracts
+    num1 = this.getBinaryToDecimal(num1);
+    num2 = this.getBinaryToDecimal(num2);
+    if(op === 'add') return num1 + num2; //Returns decimal integer
+    return num1 - num2;
+  }
+
+  handleInputChange = (e) => {
+    this.setState({exp: e.target.value});
+      try{
+      var inputLetters = e.target.value.toString();
+      var ast = parse(inputLetters);
+      var re = /([A-Za-z_2-9])+/;  //Regular expression of what not accepted
+      console.log(re.test(inputLetters));
+      var notAllowed = re.test(inputLetters);
+      if(inputLetters.length === 0){
+        this.setState({
+          decResult: 0,
+          binResult: '',
+          hexResult: '',
+          isInvalidInput: false
+        });
+      }
+      else if(notAllowed) {
+        this.setState({
+          isInvalidInput: true
+        });
+      }
+      else if(!notAllowed){
+        this.setState({
+          isInvalidInput: false
+        });
+      }
+    }catch(e){ //do nothing
+      }
+
+    try{
+      var input = ast.children[0].node;
+      if(input === 'literal' && !this.state.isInvalidInput) { //check if single num
+        var loneNumber = this.getBinaryToDecimal(ast.children[0].template);
+        this.setState({
+          decResult: loneNumber,
+          binResult: this.getDecimalToBinary(loneNumber),
+          hexResult: this.getDecimalToHex(loneNumber)
+        });
+      } else if(input === 'func' && !this.state.isInvalidInput) { //if two nums
+          var template = ast.children[0].template.replace(' ', '');
+          var firstNum;
+          var secondNum;
+          var final;
+          if(template === "#+#"){
+            firstNum = ast.children[0].children[0].template;
+            secondNum = ast.children[0].children[1].template;
+            final = this.addOrSubTwoNumbers(firstNum, secondNum, 'add');
+          }else if(template === "##"){
+            console.log(ast);
+            firstNum = ast.children[0].children[0].template;
+            secondNum = ast.children[0].children[1].children[0].template;
+            final = this.addOrSubTwoNumbers(firstNum, secondNum, 'sub');
+          }
+          this.setState({
+            decResult: final,
+            binResult: this.getDecimalToBinary(final),
+            hexResult: this.getDecimalToHex(final)
+          });
+      } else if(ast.children[0].children.length >= 3){
+        console.log('greater');
+      }
+    }catch(e){//do nothing
+      }
+
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <Header />
+
+        <InputForm handleInputChange={this.handleInputChange}/>
+
+        <Expression expression={this.state.exp} />
+
+        <Results
+          exp={this.state.exp}
+          decResult={this.state.decResult}
+          binResult={this.state.binResult}
+          hexResult={this.state.hexResult}
+          isInvalidInput={this.state.isInvalidInput}
+        />
+
+      </div>
+    );
+  }
+}
+
+export default App;
