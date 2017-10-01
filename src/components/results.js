@@ -9,9 +9,11 @@ class Results extends React.Component {
             <div className="Exp">
              <h2> Result </h2>
             <table className="Table">
-                <tr> <td>Decimal:</td> <td>{this.props.decResult}</td> </tr>
-                <tr> <td>Binary:</td> <td>{this.props.binResult}</td> </tr>
-                <tr> <td>Hex:</td> <td>{this.props.hexResult}</td> </tr>
+            <tbody>
+                <tr><td>Decimal:</td><td>{this.props.decResult}</td></tr>
+                <tr><td>Binary:</td><td>{this.props.binResult}</td></tr>
+                <tr><td>Hex:</td><td>{this.props.hexResult}</td></tr>
+                </tbody>
               </table>
             </div>
           );

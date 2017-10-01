@@ -12,8 +12,8 @@ class App extends Component {
   state = {
     exp: '',
     decResult: 0,
-    binResult: '',
-    hexResult: '',
+    binResult: '0',
+    hexResult: '0',
     isInvalidInput: false,
   }
 
@@ -47,8 +47,8 @@ class App extends Component {
       if(inputLetters.length === 0){
         this.setState({
           decResult: 0,
-          binResult: '',
-          hexResult: '',
+          binResult: '0',
+          hexResult: '0',
           isInvalidInput: false
         });
       }
@@ -75,7 +75,8 @@ class App extends Component {
           hexResult: this.getDecimalToHex(loneNumber)
         });
       } else if(input === 'func' && !this.state.isInvalidInput) { //if two nums
-          var template = ast.children[0].template.replace(' ', '');
+          var template = ast.children[0].template;
+          template = template.replace(new RegExp(' ', 'g'), '');
           var firstNum;
           var secondNum;
           var final;
