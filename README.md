@@ -1,5 +1,6 @@
 # Binary-Helper
-This project was built with Facebook's Reactjs library
+This project was built with Facebook's Reactjs library.
+
 This was made as a tool for binary addition and subtraction.
 
 # Usage
