@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 class Results extends React.Component {
 
     render() {
-        if ((this.props.decResult && !this.props.isInvalidInput) || (this.props.decResult===0 && this.props.exp.length >0)) {
+        if ((this.props.decResult && !this.props.isInvalidInput) || (this.props.decResult===0 && this.props.exp.length >0 && !this.props.isInvalidInput)) {
           return (
             <div className="Exp">
              <h2> Result </h2>
