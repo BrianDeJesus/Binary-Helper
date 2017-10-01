@@ -62,7 +62,7 @@ class App extends Component {
           isInvalidInput: false
         });
       }
-    }catch(e){ 
+    }catch(e){
       this.setState({
         isInvalidInput: true
       });
@@ -99,7 +99,9 @@ class App extends Component {
             hexResult: this.getDecimalToHex(final)
           });
       } else if(ast.children[0].children.length >= 3){
-        console.log('greater');
+        this.setState({
+          isInvalidInput: true
+        });
       }
     }catch(e){//do nothing
       }
