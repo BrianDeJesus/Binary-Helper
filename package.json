@@ -2,6 +2,7 @@
   "name": "binary-helper",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://briandejesus.github.io/Binary-Helper",
   "dependencies": {
     "enzyme": "^3.0.0",
     "enzyme-adapter-react-16": "^1.0.0",
