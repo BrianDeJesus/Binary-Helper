@@ -103,9 +103,11 @@ class App extends Component {
         });
       }
     }catch(e){
+      if(inputLetters.length > 0){
       this.setState({
         isInvalidInput: true
       });
+        }
       }
 
   }
