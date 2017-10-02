@@ -38,12 +38,10 @@ class App extends Component {
 
   handleInputChange = (e) => {
     this.setState({exp: e.target.value});
-      try{
-      var inputLetters = e.target.value.toString();
-      var ast = parse(inputLetters);
-      var re = /[^01\+\- ]/;
-      console.log(re.test(inputLetters));
-      var notAllowed = re.test(inputLetters);
+    var inputLetters = e.target.value.toString();
+    var ast = parse(inputLetters);
+    var re = /[^01\+\- ]/;
+    var notAllowed = re.test(inputLetters);
       if(inputLetters.length === 0){
         this.setState({
           decResult: 0,
@@ -62,11 +60,12 @@ class App extends Component {
           isInvalidInput: false
         });
       }
-    }catch(e){
-      this.setState({
-        isInvalidInput: true
-      });
+      else {
+        this.setState({
+          isInvalidInput: true
+        });
       }
+
 
     try{
       var input = ast.children[0].node;
@@ -88,22 +87,25 @@ class App extends Component {
             secondNum = ast.children[0].children[1].template;
             final = this.addOrSubTwoNumbers(firstNum, secondNum, 'add');
           }else if(template === "##"){
-            console.log(ast);
             firstNum = ast.children[0].children[0].template;
             secondNum = ast.children[0].children[1].children[0].template;
             final = this.addOrSubTwoNumbers(firstNum, secondNum, 'sub');
           }
+          console.log(final);
           this.setState({
             decResult: final,
             binResult: this.getDecimalToBinary(final),
             hexResult: this.getDecimalToHex(final)
           });
-      } else if(ast.children[0].children.length >= 3){
+      }else if(ast.children[0].children.length >= 3){
         this.setState({
           isInvalidInput: true
         });
       }
-    }catch(e){//do nothing
+    }catch(e){
+      this.setState({
+        isInvalidInput: true
+      });
       }
 
   }
