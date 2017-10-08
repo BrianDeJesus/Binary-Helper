@@ -45,6 +45,12 @@
   outline-color: #C64E06;
 }
 
+.inputBox {
+  width: 20%;
+  height: 1.4em;
+  font-size: 1rem;
+}
+
 .InputForm {
   padding-top: 50px;
 }
@@ -56,4 +62,10 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+@media (max-width: 700px) {
+  .inputBox {
+    width: 40%;
+  }
 }

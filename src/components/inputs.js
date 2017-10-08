@@ -6,8 +6,7 @@ class InputForm extends React.Component {
     render() {
       return (
         <form className="InputForm">
-          <label>Input: </label>
-            <input className="inputBox" type="text" value={this.props.children} onChange={this.props.handleInputChange} />
+          <input className="inputBox" type="text" placeholder="E.g. 1001 + 0001" value={this.props.children} onChange={this.props.handleInputChange} />
         </form>
       );
     }
