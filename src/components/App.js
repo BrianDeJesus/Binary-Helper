@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import './App.css';
-import InputForm from './components/inputs';
-import Header from './components/header';
-import Expression from './components/expression';
-import Results from './components/results';
+import InputForm from './Inputs';
+import Header from './Header';
+import Expression from './Expression';
+import Results from './Results';
 
 var parse = require('expression-parser/parse');
 
